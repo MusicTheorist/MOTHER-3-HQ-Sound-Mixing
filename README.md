@@ -4,6 +4,7 @@ Mixes every individual channel at 16-bit audio before downsampling everything to
 
 ## DISCLAIMER FOR SPEEDRUNNERS:
 This patch **does modify the RNG used by MOTHER 3 and will most likely give you unexpectedly results!**
+
 Because of that, any TAS recordings of MOTHER 3 will be broken by this hack. You have been warned!!
 
 ## INSTRUCTIONS for xdelta patch:
