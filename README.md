@@ -8,7 +8,7 @@ This patch **does modify the RNG used by MOTHER 3 and will most likely give you 
 Because of that, any TAS recordings of MOTHER 3 will be broken by this hack. You have been warned!!
 
 ## INSTRUCTIONS for xdelta patch:
-Apply the "Mother 3 (Fan Translations) XDELTA patch with https://www.romhacking.net/utilities/704/ AFTER you have translated your Japanese copy of MOTHER 3!
+Apply the "Mother 3 (Fan Translations)" XDELTA patch with https://www.romhacking.net/utilities/704/ AFTER you have translated your Japanese copy of MOTHER 3!
 
 ## KNOWN COMPATIBLE VERSIONS with xdelta patch:
 - Dutch v1.0
