@@ -3,7 +3,7 @@ Mixes every individual channel at 16-bit audio before downsampling everything to
 - This hack greatly reduces the number of quantization/rounding errors that pop up during the mixing process, making the classic GBA "background hiss" much quieter while making Shogo Sakai's music sound crispier than ever! Results seem even better when played back on actual hardware. Enjoy!!
 
 ## DISCLAIMER FOR SPEEDRUNNERS:
-This patch **does modify the RNG used by MOTHER 3 and will most likely give you unexpectedly results!**
+This patch **does modify the RNG used by MOTHER 3 and will most likely give you unexpected results!**
 
 Because of that, any TAS recordings of MOTHER 3 will be broken by this hack. You have been warned!!
 
