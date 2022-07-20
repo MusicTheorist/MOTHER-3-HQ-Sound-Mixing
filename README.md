@@ -1,4 +1,5 @@
-# HIGH-QUALITY AUDIO MIXING FOR MOTHER 3 (FAN TRANSLATIONS)
+# HIGH-QUALITY AUDIO MIXING FOR MOTHER 3 (FAN TRANSLATIONS) &
+# MOTHER3用ハイクオリティミキシング
 Mixes every individual channel at 16-bit audio before downsampling everything to 8-bit audio as opposed to the default m4a mixer which mixes every channel at 8-bit audio (blame the GBA's DAC!)
 - This hack greatly reduces the number of quantization/rounding errors that pop up during the mixing process, making the classic GBA "background hiss" much quieter while making Shogo Sakai's music sound crispier than ever! Results seem even better when played back on actual hardware. Enjoy!!
 
