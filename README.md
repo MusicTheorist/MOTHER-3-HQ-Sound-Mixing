@@ -18,9 +18,9 @@ Apply the "Mother 3 (Fan Translations)" XDELTA patch with https://www.romhacking
 - English v1.3
 - German v1.1
 - Polish v1.0
+- Italian v1.1.1
 
 ## KNOWN INCOMPATIBLE VERSIONS with xdelta patch:
-- Italian v1.1.1
 - Portuguese v1.0
 
 ## CREDITS:
