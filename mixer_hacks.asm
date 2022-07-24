@@ -16,20 +16,20 @@
 org $9C9C800; incbin m4a_hq_mixer.bin
 
 // Step #2: unfortunately, the fan translation has to eat up the rest of unused EWRAM, from 0x02038000 all the way to 0x0203FFFF for
-//			the purposes of main script decompression. The standard method ipatix recommends for hacking his improved mixer into GBA
-//			games won't work here because we don't have any substantial free RAM by default... Luckily, Mother 3 has quite a few
-//			redundancies baked into its code!
+//          the purposes of main script decompression. The standard method ipatix recommends for hacking his improved mixer into GBA
+//          games won't work here because we don't have any substantial free RAM by default... Luckily, Mother 3 has quite a few
+//          redundancies baked into its code!
 //
-//			Mother 3 uses two almost completely independent game engines in tandem during gameplay: an overworld engine written in C
-//			and a battle engine written in C++. For some unknown reason, both engines use their own RNG, which is particularly
-//			egregious considering both algorithms are Mersenne Twisters, each wasting around 2 kilobytes of EWRAM!! Therefore, we
-//			remove the battle engine's MT and point it to the overworld MT, which still ends up giving the game the randomness it uses
-//			while clearing up enough space in RAM to fit everything we need!
+//          Mother 3 uses two almost completely independent game engines in tandem during gameplay: an overworld engine written in C
+//          and a battle engine written in C++. For some unknown reason, both engines use their own RNG, which is particularly
+//          egregious considering both algorithms are Mersenne Twisters, each wasting around 2 kilobytes of EWRAM!! Therefore, we
+//          remove the battle engine's MT and point it to the overworld MT, which still ends up giving the game the randomness it uses
+//          while clearing up enough space in RAM to fit everything we need!
 org $8069314; dd $2005230
 org $8069434; dd $2005230
 
 // Step #3: time to make room for our new mixer and buffer! Move a handful of Mother 3's various music/sound effects arrays to where
-//			battle RNG used to be in EWRAM.
+//          battle RNG used to be in EWRAM.
 org $8120E44; dd $2001090	// 0x140 bytes, used for door knocks
 org $8120E68; dd $20011D0	// 0x500 bytes, used for voice samples
 org $8120E8C; dd $20016D0	// 0x320 bytes, used for chapter themes
@@ -44,17 +44,17 @@ org $808F9EC; dd $9C9C801
 org $808F9F0; dd $3001C00
 
 // Step #7: the new mixer is larger than the old/default Mother 3 mixer, so change the size of the transfer to IWRAM
-//			($87C bytes of new mixing code / 4 byte transfer size = $021F transfer units)
+//          ($87C bytes of new mixing code / 4 byte transfer size = $21F transfer units)
 org $808F9F4; dw $021F
 
 // Step #8: tell the game to use the new mixer for sound mixing instead of the old mixer (Thumb bit set; the new fancy 16-bit mixing
-//			buffer is going right at the very beginning of IWRAM!)
+//          buffer is going right at the very beginning of IWRAM!)
 org $808ED70; dd $3001C01
 
 // Step #9: because Mother 3 uses an above-average sample rate for its audio, the new mixing buffer is large enough to collide with one
-//			of the main music player arrays, causing the game to not load all instruments and screw up tempo changes during many songs...
-//			nice of our earlier memory management giving us even more room after the mixing code! We'll move both main music arrays, just
-//			for the sake of organization.
+//          of the main music player arrays, causing the game to not load all instruments and screw up tempo changes during many songs...
+//          nice of our earlier memory management giving us even more room after the mixing code! We'll move both main music arrays, just
+//          for the sake of organization.
 org $8120E20; dd $3002490
 org $8120E2C; dd $30027B0
 

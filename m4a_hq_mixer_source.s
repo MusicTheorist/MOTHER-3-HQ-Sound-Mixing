@@ -712,7 +712,7 @@ runtime_created_routine:
 custom_stack_3:
 	.word	0x0, 0x0, 0x0
 stack_capacity:
-	.word	0x03007FFF
+	.word	0x03007E04
 function_pointer:
 	.word	0x0
 
