@@ -34,21 +34,18 @@ public final class OpenedROMReader {
 
     public OpenedROMReader(PatchIO patchIO) throws IOException {
         this.patchIO = patchIO;
+        readROM();
+    }
 
+    public void readROM() throws IOException {
         ByteBuffer  buffer     = patchIO.buffer();
         FileChannel romChannel = patchIO.romChannel();
 
         this.mixerROMAddress     = BufferReads.intoInt(buffer, 4, romChannel, SoundEngine.MIXER_ROM_POINTER, true);
         this.battleRNGAddressOne = BufferReads.intoInt(buffer, 4, romChannel, BattlePointers.RNG_ONE.offset(), false);
 
-        fetchMixerSize(buffer, romChannel);
-        fetchSampleRate(patchIO);
-    }
-
-    public void fetchMixerSize(ByteBuffer buffer, FileChannel romChannel) throws IOException {
         mixerSize = BufferReads.intoArray(buffer, 2, romChannel, SoundEngine.MIXER_CPUSET_SIZE_OFFSET);
-    }
-    public void fetchSampleRate(PatchIO patchIO) throws IOException {
+
         patchIO.mother3ROM().seek(SoundEngine.SAMPLE_RATE_OFFSET);
         sampleRate = SampleRates.get(patchIO.mother3ROM().readByte());
     }

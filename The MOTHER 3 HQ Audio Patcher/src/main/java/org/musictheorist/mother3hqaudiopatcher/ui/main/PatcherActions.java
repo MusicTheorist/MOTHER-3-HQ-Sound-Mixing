@@ -357,8 +357,7 @@ public final class PatcherActions {
     private void attemptROMRepair(PatchIO patchIO, OpenedROMReader romReader, ResourceBundle lang) throws IOException, ROMException {
         patchIO.unlockROM();
         attemptBadPatchRemoval(patchIO, lang);
-        romReader.fetchMixerSize(patchIO.buffer(), patchIO.romChannel());
-        romReader.fetchSampleRate(patchIO);
+        romReader.readROM();
     }
 
     private void savePatchedMixerData(OpenedROMReader romReader) {
