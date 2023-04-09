@@ -33,8 +33,8 @@ public final class Popup extends Message {
             }
         });
 
-        double popupWidth = window.getOwner().getWidth() / 2d;
-        double popupHeight = window.getOwner().getHeight() / 6d;
+        double popupWidth = window.getOwner().getWidth() / 4d;
+        double popupHeight = window.getOwner().getHeight() / 4d;
 
         Label popupLabel = initLabel(getContents());
 

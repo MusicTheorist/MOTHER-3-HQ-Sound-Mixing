@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -93,7 +94,7 @@ public final class PatcherWindow {
         initBackupTickBox();
         initLocalizedNodes(true, false, false, lang);
         initLayout();
-        initScene(false, lang);
+        initScene(lang);
         disablePatchNodes(true, true);
     }
 
@@ -132,6 +133,8 @@ public final class PatcherWindow {
         japanVersion.setTextAlignment(TextAlignment.LEFT);
 
         defaultOption = new RadioButton("");
+        defaultOption.setAlignment(Pos.CENTER_RIGHT);
+
         altOption = new RadioButton("");
 
         versionGroup = new ToggleGroup();
@@ -240,8 +243,8 @@ public final class PatcherWindow {
     }
 
     private void initGrid() {
-        int rowCount = 8;
-        int colCount = 2;
+        int rowCount = 9;
+        int colCount = 5;
 
         for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
             RowConstraints rowConstraints = new RowConstraints();
@@ -437,123 +440,131 @@ public final class PatcherWindow {
     private ArrayList<HBox> initHBoxes() {
         ArrayList<HBox> hBoxes = new ArrayList<HBox>();
 
+        Insets langMenuMargin = new Insets(8, 4, 4, 8),
+            disclaimersMargin = new Insets(8, 4, 4, 4),
+             sourceCodeMargin = new Insets(8, 4, 4, 4),
+            hackCreditsMargin = new Insets(8, 8, 4, 4);
+        SpacedNode langMenu = new SpacedNode(this.langMenu, langMenuMargin, null),
+                disclaimers = new SpacedNode(this.disclaimers, disclaimersMargin, null),
+                 sourceCode = new SpacedNode(this.sourceCode, sourceCodeMargin, null),
+                hackCredits = new SpacedNode(this.hackCredits, hackCreditsMargin, null);
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER_LEFT, langMenu, disclaimers, sourceCode, hackCredits));
+
+        Insets firstLineMargin = new Insets(4, 0, 4, 0);
+        SpacedNode firstLine = new SpacedNode(new Separator(), firstLineMargin, Priority.ALWAYS);
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, firstLine));
+
         Insets   romPathMargin = new Insets(0, 0, 0, 3),
                romOpenerMargin = new Insets(0, 0, 0, 5);
         SpacedNode selectROM = new SpacedNode(this.selectROM, null, null),
                      romPath = new SpacedNode(this.romPath, romPathMargin, Priority.ALWAYS),
                    romOpener = new SpacedNode(this.romOpener, romOpenerMargin, null);
-        Insets firstRowPadding = new Insets(8, 8, 0, 8);
+        Insets firstRowPadding = new Insets(4, 8, 4, 8);
         hBoxes.add(Layout.initHBox(firstRowPadding, Pos.CENTER, selectROM, romPath, romOpener));
 
-        SpacedNode selectLang = new SpacedNode(this.selectLang, null, Priority.ALWAYS);
-        Insets secondRowPadding = new Insets(0, 0, 5, 0);
-        hBoxes.add(Layout.initHBox(secondRowPadding, null, selectLang));
+        Insets secondLineMargin = new Insets(4, 0, 4, 0);
+        SpacedNode secondLine = new SpacedNode(new Separator(), secondLineMargin, Priority.ALWAYS);
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, secondLine));
 
-        Insets japanOptionMargin = new Insets(0, 10, 10, 0),
-                 fanOptionMargin = new Insets(0, 0, 10, 10);
+        Insets selectLangMargin = new Insets(0, 8, 0, 8);
+        SpacedNode selectLang = new SpacedNode(this.selectLang, selectLangMargin, Priority.ALWAYS);
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, null, selectLang));
+
+        Insets japanOptionMargin = new Insets(8, 0, 4, 8),
+                 fanOptionMargin = new Insets(8, 8, 4, 18);
         SpacedNode japanOption = new SpacedNode(this.japanOption, japanOptionMargin, Priority.ALWAYS),
                      fanOption = new SpacedNode(this.fanOption, fanOptionMargin, Priority.ALWAYS);
         hBoxes.add(Layout.initHBox(Insets.EMPTY, null, japanOption, fanOption));
 
-        Insets japanOnlyMargin = new Insets(0, 10, 5, 10);
+        Insets thirdLineMargin = new Insets(2, 0, 2, 0);
+        SpacedNode thirdLine = new SpacedNode(new Separator(), thirdLineMargin, Priority.ALWAYS);
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, thirdLine));
+
+        Insets japanOnlyMargin = new Insets(0, 18, 4, 18);
         SpacedNode japanOnly = new SpacedNode(this.japanOnly, japanOnlyMargin, Priority.ALWAYS);
         hBoxes.add(Layout.initHBox(Insets.EMPTY, null, japanOnly));
 
-        Insets japanVersionMargin = new Insets(0, 10, 10, 10);
+        Insets japanVersionMargin = new Insets(0, 18, 8, 18);
         SpacedNode japanVersion = new SpacedNode(this.japanVersion, japanVersionMargin, Priority.ALWAYS);
         hBoxes.add(Layout.initHBox(Insets.EMPTY, null, japanVersion));
 
-        Insets defaultOptionMargin = new Insets(0, 0, 0, 72);
-        SpacedNode defaultOption = new SpacedNode(this.defaultOption, defaultOptionMargin, Priority.ALWAYS);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, null, defaultOption));
+        Insets defaultOptionMargin = new Insets(0, 0, 8, 8),
+                   altOptionMargin = new Insets(0, 8, 8, 18);
+        SpacedNode defaultOption = new SpacedNode(this.defaultOption, defaultOptionMargin, Priority.ALWAYS),
+                       altOption = new SpacedNode(this.altOption, altOptionMargin, Priority.ALWAYS);
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, null, defaultOption, altOption));
 
-        Insets altOptionMargin = new Insets(5, 0, 0, 72);
-        SpacedNode altOption = new SpacedNode(this.altOption, altOptionMargin, Priority.ALWAYS);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, null, altOption));
-
-        Insets disclaimersMargin = new Insets(0, 20, 10, 20);
-        SpacedNode disclaimers = new SpacedNode(this.disclaimers, disclaimersMargin, null);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, disclaimers));
-
-        Insets sourceCodeMargin = new Insets(5, 20, 10, 20);
-        SpacedNode sourceCode = new SpacedNode(this.sourceCode, sourceCodeMargin, null);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, sourceCode));
-
-        Insets hackCreditsMargin = new Insets(5, 20, 10, 20);
-        SpacedNode hackCredits = new SpacedNode(this.hackCredits, hackCreditsMargin, null);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, hackCredits));
-
-        Insets langMenuMargin = new Insets(5, 20, 10, 20);
-        SpacedNode langMenu = new SpacedNode(this.langMenu, langMenuMargin, null);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, langMenu));
-
-        Insets adjustRateMargin = new Insets(5, 10, 5, 5);
+        Insets adjustRateMargin = new Insets(4, 10, 4, 10);
         SpacedNode adjustRate = new SpacedNode(this.adjustRate, adjustRateMargin, Priority.ALWAYS);
         hBoxes.add(Layout.initHBox(Insets.EMPTY, null, adjustRate));
 
-        Insets sampleRatesMargin = new Insets(0, 10, 0, 10);
+        Insets sampleRatesMargin = new Insets(0, 10, 8, 10);
         SpacedNode sampleRates = new SpacedNode(this.sampleRates, sampleRatesMargin, Priority.ALWAYS);
         hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, sampleRates));
 
-        Insets rateInfoMargin = new Insets(5, 10, 5, 5);
+        Insets rateInfoMargin = new Insets(4, 10, 4, 4);
         SpacedNode rateInfo = new SpacedNode(this.rateInfo, rateInfoMargin, Priority.ALWAYS);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, rateInfo));
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER_LEFT, rateInfo));
 
-        Insets firstAsteriskMargin = new Insets(5, 5, 5, 0);
+        Insets firstAsteriskMargin = new Insets(4, 8, 4, 4);
         SpacedNode firstAsterisk = new SpacedNode(this.firstAsterisk, firstAsteriskMargin, Priority.ALWAYS);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, firstAsterisk));
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER_LEFT, firstAsterisk));
 
-        Insets secondAsteriskMargin = new Insets(5, 20, 5, 0);
+        Insets secondAsteriskMargin = new Insets(4, 8, 4, 4);
         SpacedNode secondAsterisk = new SpacedNode(this.secondAsterisk, secondAsteriskMargin, Priority.ALWAYS);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, secondAsterisk));
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER_LEFT, secondAsterisk));
 
-        Insets backupROMMargin = new Insets(1, 10, 15, 10),
-               undoPatchMargin = new Insets(2, 5, 15, 0),
-                patchROMMargin = new Insets(2, 10, 15, 0);
+        Insets fourthLineMargin = new Insets(4, 0, 8, 0);
+        SpacedNode fourthLine = new SpacedNode(new Separator(), fourthLineMargin, Priority.ALWAYS);
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, fourthLine));
+
+        Insets backupROMMargin = new Insets(0, 10, 10, 10),
+               undoPatchMargin = new Insets(2, 5, 10, 0),
+                patchROMMargin = new Insets(2, 10, 10, 0);
         SpacedNode backupROM = new SpacedNode(this.backupROM, backupROMMargin, null),
                    undoPatch = new SpacedNode(this.undoPatch, undoPatchMargin, null),
                     patchROM = new SpacedNode(this.patchROM, patchROMMargin, null);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, backupROM, undoPatch, patchROM));
+        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER_RIGHT, backupROM, undoPatch, patchROM));
 
         return hBoxes;
     }
 
-    private ArrayList<VBox> initVBoxes(ArrayList<HBox> rows) {
+    private ArrayList<VBox> initVBoxes(ArrayList<HBox> hBoxes) {
         ArrayList<VBox> vBoxes = new ArrayList<VBox>();
 
-        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, rows.subList(0, 1)));
-        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, rows.subList(1, 3)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(0, 1)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(1, 2)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(2, 3)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(3, 4)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(4, 6)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(6, 7)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(7, 10)));
 
-        SpacedNode topLine = new SpacedNode(new Separator(), null, null);
-        vBoxes.add(Layout.initVBox(Insets.EMPTY, Pos.CENTER, topLine));
+        SpacedNode verticalLine = new SpacedNode(new Separator(Orientation.VERTICAL), null, Priority.ALWAYS);
+        vBoxes.add(Layout.initVBox(Insets.EMPTY, Pos.CENTER, verticalLine));
 
-        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, rows.subList(3, 7)));
-        SpacedNode midLine = new SpacedNode(new Separator(), null, null);
-        vBoxes.add(Layout.initVBox(Insets.EMPTY, Pos.CENTER, midLine));
-        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, rows.subList(7, 11)));
-
-        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, rows.subList(11, 16)));
-
-        Insets bottomLineMargin = new Insets(0, 0, 2, 0);
-        SpacedNode bottomLine = new SpacedNode(new Separator(), bottomLineMargin, null);
-        vBoxes.add(Layout.initVBox(bottomLineMargin, Pos.CENTER, bottomLine));
-
-        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, rows.subList(16, 17)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(10, 12)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(12, 15)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(15, 16)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(16, 17)));
 
         return vBoxes;
     }
 
     void initLayout() {
         ArrayList<VBox> layoutNodes = initVBoxes(initHBoxes());
-        layout.add(layoutNodes.get(0), 0, 0, 2, 1);
-        layout.add(layoutNodes.get(1), 0, 1, 2, 1);
-        layout.add(layoutNodes.get(2), 0, 2, 2, 1);
-        layout.add(layoutNodes.get(3), 0, 3, 1, 1);
-        layout.add(layoutNodes.get(4), 0, 4, 1, 1);
-        layout.add(layoutNodes.get(5), 0, 5, 1, 1);
-        layout.add(layoutNodes.get(6), 1, 3, 1, 3);
-        layout.add(layoutNodes.get(7), 0, 6, 2, 1);
-        layout.add(layoutNodes.get(8), 0, 7, 2, 1);
+        layout.add(layoutNodes.get( 0), 0, 0, 5, 1);
+        layout.add(layoutNodes.get( 1), 0, 1, 5, 1);
+        layout.add(layoutNodes.get( 2), 0, 2, 5, 1);
+        layout.add(layoutNodes.get( 3), 0, 3, 5, 1);
+        layout.add(layoutNodes.get( 4), 0, 4, 1, 1);
+        layout.add(layoutNodes.get( 5), 0, 5, 1, 1);
+        layout.add(layoutNodes.get( 6), 0, 6, 1, 1);
+        layout.add(layoutNodes.get( 7), 1, 4, 1, 3);
+        layout.add(layoutNodes.get( 8), 2, 4, 1, 3);
+        layout.add(layoutNodes.get( 9), 3, 4, 1, 3);
+        layout.add(layoutNodes.get(10), 0, 7, 5, 1);
+        layout.add(layoutNodes.get(11), 0, 8, 5, 1);
     }
 
     private void initDragAndDrop(Scene scene, ResourceBundle lang) {
@@ -601,7 +612,7 @@ public final class PatcherWindow {
         });
     }
 
-    private void initScene(boolean accessibilityFont, ResourceBundle lang) {
+    private void initScene(ResourceBundle lang) {
         scene = new Scene(layout);
         String fontFamily = Font.getDefault().getFamily();
         Parent root = scene.getRoot();
@@ -611,8 +622,6 @@ public final class PatcherWindow {
 
     public void initStage() {
         patcher.setScene(scene);
-        patcher.setHeight(640 * 1.15);
-        patcher.setWidth(480 * 1.15);
         patcher.setResizable(false);
         patcher.getIcons().addAll(patcherActions.getIcons());
         langMenu.setGraphic(patcherActions.getLangMenuIcon());

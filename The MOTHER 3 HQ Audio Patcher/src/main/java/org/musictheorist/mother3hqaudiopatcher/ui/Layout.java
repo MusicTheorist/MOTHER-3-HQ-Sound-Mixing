@@ -13,43 +13,43 @@ public final class Layout {
     public static HBox initHBox(Insets padding, Pos alignment, SpacedNode... nodes) {
         if(padding == null) padding = Insets.EMPTY;
 
-        HBox newRow = new HBox();
-        newRow.setPadding(padding);
-        newRow.setAlignment(alignment);
+        HBox newBox = new HBox();
+        newBox.setPadding(padding);
+        newBox.setAlignment(alignment);
 
         for(SpacedNode next : nodes) {
-            newRow.getChildren().add(next.node());
+            newBox.getChildren().add(next.node());
             HBox.setMargin(next.node(), next.margin());
             HBox.setHgrow(next.node(), next.grow());
         }
 
-        return newRow;
+        return newBox;
     }
 
     public static VBox initVBoxWithHBoxes(Pos alignment, List<HBox> list) {
-        VBox newColumn = new VBox();
-        newColumn.setAlignment(alignment);
+        VBox newBox = new VBox();
+        newBox.setAlignment(alignment);
 
         for(HBox next : list) {
-            newColumn.getChildren().add(next);
+            newBox.getChildren().add(next);
         }
 
-        return newColumn;
+        return newBox;
     }
 
     public static VBox initVBox(Insets padding, Pos alignment, SpacedNode... nodes) {
         if(padding == null) padding = Insets.EMPTY;
 
-        VBox newColumn = new VBox();
-        newColumn.setPadding(padding);
-        newColumn.setAlignment(alignment);
+        VBox newBox = new VBox();
+        newBox.setPadding(padding);
+        newBox.setAlignment(alignment);
 
         for(SpacedNode next : nodes) {
-            newColumn.getChildren().add(next.node());
+            newBox.getChildren().add(next.node());
             VBox.setMargin(next.node(), next.margin());
             VBox.setVgrow(next.node(), next.grow());
         }
 
-        return newColumn;
+        return newBox;
     }
 }
