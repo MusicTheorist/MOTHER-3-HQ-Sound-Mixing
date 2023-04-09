@@ -1,7 +1,9 @@
 # HIGH-QUALITY AUDIO MIXING FOR MOTHER 3 / MOTHER3用ハイクオリティミキシング
-Mixes every individual channel at 16-bit audio before downsampling everything to 8-bit audio as opposed to the default m4a mixer which mixes every channel at 8-bit audio (blame the GBA's DAC!)
-- This hack greatly reduces the number of quantization/rounding errors that pop up during the mixing process, making the classic GBA "background hiss" much quieter while making Shogo Sakai's music sound crispier than ever! Results seem even better when played back on actual hardware. Enjoy!!
+## Ever wanted to play MOTHER 3 without so much noise? Love hearing its soundtrack crystal clear on YouTube? Now you can experience the game with much cleaner audio!
+This hack mixes every individual channel at 16-bit audio before downsampling everything to 8-bit audio as opposed to the default m4a mixer which mixes every channel at 8-bit audio (blame the GBA's DAC!)
+- This greatly reduces the number of quantization/rounding errors that pop up during the mixing process, making the classic GBA "background hiss" much quieter while making Shogo Sakai's music sound crispier than ever! Results seem even better when played back on actual hardware. Enjoy!!
 
+## MOTHER3を音協のノイズなしで遊びたいでしょうか。YouTubeでそのサントラを高音質で聴くｋのが好きでしょうか。そんな貴方にはMOTHER3を高音質で楽しみ方法を提供します！
 元のミキサーの様にチャンネルを8-bitでミキシングすることではなく、それぞれのチャンネルを16-bitでミキシングしてから最終の8-bit段階にダウンサンプリングする。
 - この調整はクォンタイズすることによる誤差を減らし、GBAの特徴的なノイズ音を下げる。酒井省吾さんの曲をより綺麗に聞こえる！エミュレータよりハードの方の改良が大きいらしい。
 
