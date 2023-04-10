@@ -2,6 +2,7 @@ package org.musictheorist.mother3hqaudiopatcher.ui.popups.error;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import org.musictheorist.mother3hqaudiopatcher.resources.PatcherResources;
@@ -42,7 +43,7 @@ public final class StackTraceWindow {
         this.hyperlinkActions = hyperlinkActions;
         this.layout = new GridPane();
 
-        initStackTrace(error);
+        initStackTrace(error, lang);
         initTextFlow(lang);
         initHyperlink();
         initCloseButton(lang);
@@ -50,7 +51,14 @@ public final class StackTraceWindow {
         initWindow(patcher, patcherResources, lang);
     }
 
-    private void initStackTrace(Throwable error) {
+    private void initStackTrace(Throwable error, ResourceBundle lang) {
+        if(error.getLocalizedMessage() != null) {
+            try {
+                LocalizedException localized = new LocalizedException(lang.getString(error.getLocalizedMessage()), error);
+                error = localized;
+            } catch(MissingResourceException e) {}
+        }
+
         StringWriter errorWriter = new StringWriter();
         error.printStackTrace(new PrintWriter(errorWriter));
         stackTrace = TextBox.stackTrace(errorWriter.toString(), WIDTH_PADDING, HEIGHT_PADDING);

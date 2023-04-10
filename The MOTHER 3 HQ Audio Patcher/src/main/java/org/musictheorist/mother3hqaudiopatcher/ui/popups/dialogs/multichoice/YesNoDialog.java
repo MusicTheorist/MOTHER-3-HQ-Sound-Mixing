@@ -35,4 +35,22 @@ public sealed class YesNoDialog extends Dialog permits CustomAddressDialog {
                                AlertType.CONFIRMATION,
                                lang);
     }
+
+    public static YesNoDialog newConfirmRateDialog(Stage patcher, PatcherResources patcherResources, boolean lowerThanDefault, ResourceBundle lang) {
+        return new YesNoDialog(patcher,
+                               patcherResources,
+                               lang.getString("titleConfirmRate"),
+                               lang.getString("labelConfirmRateA") + "\n\n" + (lowerThanDefault ? lang.getString("labelLowerRates") : lang.getString("labelHigherRates")) + "\n\n" + lang.getString("labelConfirmRateB"),
+                               AlertType.CONFIRMATION,
+                               lang);
+    }
+
+    public static YesNoDialog newTestPopupsDialog(Stage patcher, PatcherResources patcherResources, ResourceBundle lang) {
+        return new YesNoDialog(patcher,
+                               patcherResources,
+                               lang.getString("titleCyclePopups"),
+                               lang.getString("labelCyclePopups"),
+                               AlertType.CONFIRMATION,
+                               lang);
+    }
 }

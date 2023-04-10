@@ -4,7 +4,8 @@ import java.util.EnumSet;
 import java.util.Locale;
 
 public enum Languages {
-     ENGLISH("langEnglish", Locale.ENGLISH);
+     ENGLISH("langEnglish", Locale.ENGLISH),
+      FRENCH("langFrench",  Locale.FRENCH);
     //JAPANESE("langJapanese", Locale.JAPANESE);
 
     private final String langKey;

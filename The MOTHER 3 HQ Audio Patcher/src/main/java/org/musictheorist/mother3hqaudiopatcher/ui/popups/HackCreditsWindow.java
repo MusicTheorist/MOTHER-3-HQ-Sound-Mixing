@@ -49,13 +49,14 @@ public final class HackCreditsWindow {
         Text decompCredit = new Text(lang.getString("labelDecompCredit"));
         decompLink = new Hyperlink(lang.getString("linkDecompCredit"));
         Text extraSupportCredit = new Text(lang.getString("labelExtraSupportCredit"));
+        Text frenchCredit = new Text(lang.getString("labelFrenchCredit"));
         Text specialThanks = new Text(lang.getString("labelSpecialThanks"));
         Text githubIssues = new Text(lang.getString("labelGithubIssues"));
         githubIssuesLink = new Hyperlink(lang.getString("linkGithubIssues"));
 
         textFlow = new TextFlow(romHackCredit, ipatixCredit, ipatixLink, originalMixerCredit,
                                 originalMixerLink, decompCredit, decompLink, extraSupportCredit,
-                                specialThanks, githubIssues, githubIssuesLink);
+                                frenchCredit, specialThanks, githubIssues, githubIssuesLink);
     }
 
     private void initHyperlinks() {

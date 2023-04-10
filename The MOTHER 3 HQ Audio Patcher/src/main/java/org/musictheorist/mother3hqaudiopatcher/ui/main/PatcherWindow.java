@@ -71,9 +71,6 @@ public final class PatcherWindow {
     private Button disclaimers;
     private Button sourceCode;
     private Button hackCredits;
-    private Label rateInfo;
-    private Label firstAsterisk;
-    private Label secondAsterisk;
     private MenuButton langMenu;
     private CheckBox backupROM;
     private Button undoPatch;
@@ -150,15 +147,6 @@ public final class PatcherWindow {
         hackCredits = new Button("");
         hackCredits.setAlignment(Pos.CENTER);
 
-        rateInfo = new Label("");
-        rateInfo.setTextAlignment(TextAlignment.LEFT);
-
-        firstAsterisk = new Label("");
-        firstAsterisk.setTextAlignment(TextAlignment.LEFT);
-
-        secondAsterisk = new Label("");
-        secondAsterisk.setTextAlignment(TextAlignment.LEFT);
-
         langMenu = new MenuButton("");
         backupROM = new CheckBox("");
         undoPatch = new Button("");
@@ -176,9 +164,6 @@ public final class PatcherWindow {
         Color stateColor = disabled ? Color.GRAY : Color.BLACK;
         adjustRate.setTextFill(stateColor);
         sampleRates.setDisable(disabled);
-        rateInfo.setTextFill(stateColor);
-        firstAsterisk.setTextFill(stateColor);
-        secondAsterisk.setTextFill(stateColor);
         backupROM.setDisable(disabled);
         patchROM.setDisable(disabled);
     }
@@ -229,10 +214,6 @@ public final class PatcherWindow {
         hackCredits.setText(lang.getString("buttonCredits"));
         hackCredits.setMnemonicParsing(true);
 
-        rateInfo.setText(lang.getString("labelRateInfo"));
-        firstAsterisk.setText(lang.getString("labelRateAsterisk1"));
-        secondAsterisk.setText(lang.getString("labelRateAsterisk2"));
-
         backupROM.setText(lang.getString("tickBackupROM"));
 
         undoPatch.setText(lang.getString("buttonUndoPatch"));
@@ -244,7 +225,7 @@ public final class PatcherWindow {
 
     private void initGrid() {
         int rowCount = 9;
-        int colCount = 5;
+        int colCount = 3;
 
         for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
             RowConstraints rowConstraints = new RowConstraints();
@@ -275,9 +256,6 @@ public final class PatcherWindow {
         defaultOption.setMaxWidth(Double.MAX_VALUE);
         altOption.setMaxWidth(Double.MAX_VALUE);
         adjustRate.setMaxWidth(Double.MAX_VALUE);
-
-        int listHeight = (24 * (SampleRates.LENGTH - 4)) - 4;
-        sampleRates.setMaxSize(220, listHeight);
     }
 
     private void initROMPathField() {
@@ -352,6 +330,10 @@ public final class PatcherWindow {
         ObservableList<String> rateItems = FXCollections.observableArrayList(rates);
         sampleRates.setItems(rateItems);
         scrollToRate(sampleRates.getSelectionModel().getSelectedIndex());
+
+        int listWidth = Integer.valueOf(lang.getString("widthSampleRates"));
+        int listHeight = (24 * (SampleRates.LENGTH - 4)) - 4;
+        sampleRates.setMaxSize(listWidth, listHeight);
     }
 
     private void initSampleRateMenu(boolean japanROM, ResourceBundle lang) {
@@ -502,18 +484,6 @@ public final class PatcherWindow {
         SpacedNode sampleRates = new SpacedNode(this.sampleRates, sampleRatesMargin, Priority.ALWAYS);
         hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, sampleRates));
 
-        Insets rateInfoMargin = new Insets(4, 10, 4, 4);
-        SpacedNode rateInfo = new SpacedNode(this.rateInfo, rateInfoMargin, Priority.ALWAYS);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER_LEFT, rateInfo));
-
-        Insets firstAsteriskMargin = new Insets(4, 8, 4, 4);
-        SpacedNode firstAsterisk = new SpacedNode(this.firstAsterisk, firstAsteriskMargin, Priority.ALWAYS);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER_LEFT, firstAsterisk));
-
-        Insets secondAsteriskMargin = new Insets(4, 8, 4, 4);
-        SpacedNode secondAsterisk = new SpacedNode(this.secondAsterisk, secondAsteriskMargin, Priority.ALWAYS);
-        hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER_LEFT, secondAsterisk));
-
         Insets fourthLineMargin = new Insets(4, 0, 8, 0);
         SpacedNode fourthLine = new SpacedNode(new Separator(), fourthLineMargin, Priority.ALWAYS);
         hBoxes.add(Layout.initHBox(Insets.EMPTY, Pos.CENTER, fourthLine));
@@ -544,27 +514,25 @@ public final class PatcherWindow {
         vBoxes.add(Layout.initVBox(Insets.EMPTY, Pos.CENTER, verticalLine));
 
         vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(10, 12)));
-        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(12, 15)));
-        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(15, 16)));
-        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(16, 17)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(12, 13)));
+        vBoxes.add(Layout.initVBoxWithHBoxes(Pos.CENTER, hBoxes.subList(13, 14)));
 
         return vBoxes;
     }
 
     void initLayout() {
         ArrayList<VBox> layoutNodes = initVBoxes(initHBoxes());
-        layout.add(layoutNodes.get( 0), 0, 0, 5, 1);
-        layout.add(layoutNodes.get( 1), 0, 1, 5, 1);
-        layout.add(layoutNodes.get( 2), 0, 2, 5, 1);
-        layout.add(layoutNodes.get( 3), 0, 3, 5, 1);
+        layout.add(layoutNodes.get( 0), 0, 0, 3, 1);
+        layout.add(layoutNodes.get( 1), 0, 1, 3, 1);
+        layout.add(layoutNodes.get( 2), 0, 2, 3, 1);
+        layout.add(layoutNodes.get( 3), 0, 3, 3, 1);
         layout.add(layoutNodes.get( 4), 0, 4, 1, 1);
         layout.add(layoutNodes.get( 5), 0, 5, 1, 1);
         layout.add(layoutNodes.get( 6), 0, 6, 1, 1);
         layout.add(layoutNodes.get( 7), 1, 4, 1, 3);
         layout.add(layoutNodes.get( 8), 2, 4, 1, 3);
-        layout.add(layoutNodes.get( 9), 3, 4, 1, 3);
-        layout.add(layoutNodes.get(10), 0, 7, 5, 1);
-        layout.add(layoutNodes.get(11), 0, 8, 5, 1);
+        layout.add(layoutNodes.get( 9), 0, 7, 3, 1);
+        layout.add(layoutNodes.get(10), 0, 8, 3, 1);
     }
 
     private void initDragAndDrop(Scene scene, ResourceBundle lang) {
@@ -620,16 +588,24 @@ public final class PatcherWindow {
         initDragAndDrop(scene, lang);
     }
 
-    public void initStage() {
+    public void initStage(boolean loadIcons) {
         patcher.setScene(scene);
         patcher.setResizable(false);
-        patcher.getIcons().addAll(patcherActions.getIcons());
-        langMenu.setGraphic(patcherActions.getLangMenuIcon());
+        if(loadIcons) {
+            patcher.getIcons().addAll(patcherActions.getIcons());
+            langMenu.setGraphic(patcherActions.getLangMenuIcon());
+        }
     }
 
     public void display() {
         patcher.show();
         layout.requestFocus();
+    }
+
+    void resize() {
+        patcher.close();
+        initStage(false);
+        display();
     }
 
     void initNewPatchState(PatchStates patchState, ResourceBundle lang) {

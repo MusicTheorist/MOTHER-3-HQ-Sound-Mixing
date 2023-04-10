@@ -49,7 +49,9 @@ public final class MixerCodeActions {
             String currentFont = mixerCodeView.getFont().getFamily();
             mixerCodeWindow.adjustFont(mixerCodeView, currentFont, newSize);
         } catch (NumberFormatException e) {
-            errorMessages.invokeDefault("errorSizeNaN", e, codeView, lang);
+            errorMessages.nextMessageInfo(false);
+            errorMessages.toggleStackTrace(false);
+            errorMessages.invokeCustom("errorSizeNaN", e, codeView, lang);
         }
     }
 }

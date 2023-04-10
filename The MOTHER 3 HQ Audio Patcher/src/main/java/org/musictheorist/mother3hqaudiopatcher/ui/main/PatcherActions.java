@@ -77,9 +77,12 @@ public final class PatcherActions {
 
     private ErrorMessages errorMessages;
 
+    private PopupsTester popupTester;
+
     public PatcherActions(PatcherResources patcherResources) {
         this.patcherResources = patcherResources;
         this.popupHandler = new PopupHandler();
+        this.popupTester = null;
     }
 
     void setGUI(PatcherWindow patcherWindow, Stage patcher) {
@@ -87,8 +90,16 @@ public final class PatcherActions {
         this.patcher = patcher;
     }
 
+    public PopupHandler getPopupHandler() {
+        return popupHandler;
+    }
+
     public void initErrorMessages(ErrorMessages errorMessages) {
         this.errorMessages = errorMessages;
+    }
+
+    public void initPopupTests(PopupsTester popupTester) {
+        this.popupTester = popupTester;
     }
 
     ArrayList<Image> getIcons() {
@@ -167,7 +178,7 @@ public final class PatcherActions {
         patchIO.unlockROM();
     }
 
-    private ButtonData getUserInput(Dialog window, boolean getLater, ResourceBundle lang) {
+    ButtonData getUserInput(Dialog window, boolean getLater, ResourceBundle lang) {
         CompletableFuture<ButtonData> userInput = new CompletableFuture<ButtonData>();
         if(getLater) {
             Platform.runLater(new Runnable() {
@@ -189,7 +200,7 @@ public final class PatcherActions {
         return buttonData;
     }
 
-    private ButtonData displayRepairDialog(boolean success, ResourceBundle lang) {
+    ButtonData displayRepairDialog(boolean success, ResourceBundle lang) {
         String backupPath = patcherResources.getBackupPath();
         Dialog alert;
         if(backupPath.equals("")) {
@@ -199,7 +210,7 @@ public final class PatcherActions {
         return getUserInput(alert, success, lang);
     }
 
-    private ButtonData displayRemovedPatchDialog(boolean success, ResourceBundle lang) {
+    ButtonData displayRemovedPatchDialog(boolean success, ResourceBundle lang) {
         String backupPath = patcherResources.getBackupPath();
         Dialog alert;
         if(backupPath.equals("")) {
@@ -209,7 +220,7 @@ public final class PatcherActions {
         return getUserInput(alert, success, lang);
     }
 
-    private ButtonData displayAppliedPatchDialog(boolean success, ResourceBundle lang) {
+    ButtonData displayAppliedPatchDialog(boolean success, ResourceBundle lang) {
         String backupPath = patcherResources.getBackupPath();
         Dialog alert;
         if(backupPath.equals("")) {
@@ -525,7 +536,7 @@ public final class PatcherActions {
         }
     }
 
-    private void handleFailDuringROMLoad(Throwable error, ResourceBundle lang) {
+    void handleFailDuringROMLoad(Throwable error, ResourceBundle lang) {
         StringBuilder message = new StringBuilder();
         ButtonData userInput = null;
 
@@ -696,6 +707,10 @@ public final class PatcherActions {
                                          patcherResources.getPatchType() == PatchStates.JAPAN_PATCH,
                                          true,
                                          lang);
+        patcherWindow.resize();
+        if(popupTester != null) {
+            popupTester.run(popupHandler, lang);
+        }
     }
 
     void toggleROMBackup(CheckBox backupROM) {
@@ -762,6 +777,14 @@ public final class PatcherActions {
     }
 
     void patchROM(ResourceBundle lang) {
+        SampleRates selectedRate = patcherResources.getSampleRate();
+        if(selectedRate.index() != SampleRates.DEFAULT.index()) {
+            boolean lowerThanDefault = selectedRate.index() < SampleRates.DEFAULT.index();
+            Dialog confirmRateDialog = YesNoDialog.newConfirmRateDialog(patcher, patcherResources, lowerThanDefault, lang);
+            ButtonData userInput = getUserInput(confirmRateDialog, false, lang);
+            if(userInput == ButtonData.NO) return;
+        }
+
         popupHandler.display(Popup.newApplyingPatchPopup(patcher, lang));
         final PatchIO patchIO = patcherResources.getPatchIO();
 
@@ -810,8 +833,8 @@ public final class PatcherActions {
                     @Override public void run() {
                         popupHandler.closeOneNow();
                         if(noMonospaceFonts) {
-                            Dialog alert = OKDialog.newNoMonospaceDialog(patcher, patcherResources, lang);
-                            alert.display();
+                            Dialog noMonospaceDialog = OKDialog.newNoMonospaceDialog(patcher, patcherResources, lang);
+                            getUserInput(noMonospaceDialog, false, lang);
                         }
                         else {
                             MixerCodeActions actions = new MixerCodeActions(patcherResources, errorMessages);

@@ -13,12 +13,12 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.stage.Stage;
 
 public final class OKDialog extends Dialog {
-    OKDialog(Stage patcher, PatcherResources patcherResources, String title, String contents, boolean success, ResourceBundle lang) {
+    OKDialog(Stage patcher, PatcherResources patcherResources, String title, String contents, boolean success, boolean stackTrace, ResourceBundle lang) {
         super(patcher,
               patcherResources,
               title,
               contents,
-              success ? AlertType.INFORMATION : AlertType.ERROR,
+              success ? AlertType.INFORMATION : (stackTrace ? AlertType.ERROR : AlertType.WARNING),
               lang);
     }
 
@@ -44,6 +44,7 @@ public final class OKDialog extends Dialog {
                             lang.getString("titlePatchROM"),
                             success ? lang.getString("labelPatchSuccess") : lang.getString("labelPatchFail"),
                             success,
+                            true,
                             lang);
     }
     public static OKDialog newAppliedPatchDialog(Stage patcher, PatcherResources patcherResources, boolean success, String backupPath, ResourceBundle lang) {
@@ -58,6 +59,7 @@ public final class OKDialog extends Dialog {
                             lang.getString("titleCustomMixerAddress"),
                             lang.getString("labelCustomLocation") + " " + Conversions.getString(address),
                             true,
+                            false,
                             lang);
     }
 
@@ -66,6 +68,7 @@ public final class OKDialog extends Dialog {
                             patcherResources,
                             lang.getString("titleViewSource"),
                             lang.getString("labelNoMonospace"),
+                            false,
                             false,
                             lang);
     }
@@ -76,6 +79,7 @@ public final class OKDialog extends Dialog {
                             lang.getString("titleUndoPatch"),
                             success ? lang.getString("labelUndoSuccess") : lang.getString("labelUndoFail"),
                             success,
+                            true,
                             lang);
     }
     public static OKDialog newRemovedPatchDialog(Stage patcher, PatcherResources patcherResources, boolean success, String backupPath, ResourceBundle lang) {
@@ -90,11 +94,22 @@ public final class OKDialog extends Dialog {
                             lang.getString("titleRepairROM"),
                             success ? lang.getString("labelRepairSuccess") : lang.getString("labelRepairFail"),
                             success,
+                            true,
                             lang);
     }
     public static OKDialog newRepairedROMDialog(Stage patcher, PatcherResources patcherResources, boolean success, String backupPath, ResourceBundle lang) {
         OKDialog window = newRepairedROMDialog(patcher, patcherResources, success, lang);
         window.appendToContents("\n" + lang.getString("labelBackupInfo") + " " + backupPath);
         return window;
+    }
+
+    public static OKDialog newPopupsTestedDialog(Stage patcher, PatcherResources patcherResources, ResourceBundle lang) {
+        return new OKDialog(patcher,
+                            patcherResources,
+                            lang.getString("titleCyclePopups"),
+                            lang.getString("labelCyclePopupsDone"),
+                            true,
+                            false,
+                            lang);
     }
 }

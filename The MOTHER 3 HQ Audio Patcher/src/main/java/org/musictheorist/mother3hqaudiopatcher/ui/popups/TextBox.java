@@ -28,9 +28,9 @@ public final class TextBox {
         return text;
     }
 
-    private static double getSizeFromKey(String key, ResourceBundle lang) {
+    private static int getSizeFromKey(String key, ResourceBundle lang) {
         String value = lang.getString(key);
-        return Double.parseDouble(value);
+        return Integer.parseInt(value);
     }
 
     private static void setSizes(TextArea textBox, double width, double height) {
@@ -55,8 +55,8 @@ public final class TextBox {
         String contents = lang.getString(contentsKey);
         TextArea textBox = createTextBox(contents, true);
 
-        double width = getSizeFromKey(widthKey, lang);
-        double height = getSizeFromKey(heightKey, lang);
+        int width = getSizeFromKey(widthKey, lang);
+        int height = getSizeFromKey(heightKey, lang);
         textBox.setPrefSize(width, height);
 
         return textBox;

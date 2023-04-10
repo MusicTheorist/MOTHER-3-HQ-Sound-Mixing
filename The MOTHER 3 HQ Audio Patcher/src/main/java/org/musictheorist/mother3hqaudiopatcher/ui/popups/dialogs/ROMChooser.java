@@ -10,6 +10,8 @@ public final class ROMChooser {
 
     public static FileChooser initDialog(File recentFolder, ResourceBundle lang) {
         FileChooser fileDialog = new FileChooser();
+        String title = lang.getString("buttonOpenROM");
+        fileDialog.setTitle(title.substring(1));
         fileDialog.getExtensionFilters().add(
             new FileChooser.ExtensionFilter(lang.getString("chooserFilter"), "*.gba")
         );

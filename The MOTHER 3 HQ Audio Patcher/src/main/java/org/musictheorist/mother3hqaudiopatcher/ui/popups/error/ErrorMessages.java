@@ -72,7 +72,8 @@ public final class ErrorMessages {
         ArrayList<ButtonType> buttons = initButtons(stackTraceEnabled, lang);
 
         Alert alert = new Alert(msgType, "", buttons.toArray(ButtonType[]::new));
-        AlertType iconType = alertType == AlertType.INFORMATION ? AlertType.NONE : AlertType.WARNING;
+        boolean infoMsg = msgType != AlertType.WARNING && alertType == AlertType.INFORMATION;
+        AlertType iconType = infoMsg ? AlertType.NONE : AlertType.WARNING;
         alert.setGraphic(patcherResources.getAlertIcon(iconType));
         initWindow(alert, titleKey, errorLabel, patcher, lang);
 
