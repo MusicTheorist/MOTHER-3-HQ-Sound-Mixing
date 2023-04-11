@@ -32,6 +32,7 @@ public final class PatcherResources {
     private ArrayList<Image> uiIcons;
 
     private ObservableList<String> monospaceFonts;
+    private int knownFontIndex;
 
     private File lastOpenedROM;
 
@@ -105,6 +106,17 @@ public final class PatcherResources {
                 monoFamilyList.add(fontFamilyName);
             }
         }
+
+        // Kudos to JumpmanFR for this suggestion!
+        knownFontIndex = -1;
+        for(int i = 0; i < monoFamilyList.size(); i++) {
+            String fontName = monoFamilyList.get(i);
+            if(fontName.equals("Courier New") || fontName.equals("Monospaced")) {
+                knownFontIndex = i;
+                break;
+            }
+        }
+
         return FXCollections.observableArrayList(monoFamilyList);
     }
     public void initMonospaceFonts() {
@@ -112,6 +124,9 @@ public final class PatcherResources {
     }
     public ObservableList<String> getFonts() {
         return monospaceFonts;
+    }
+    public int getKnownFontIndex() {
+        return knownFontIndex;
     }
 
     public void setLastOpenedROM(File lastOpenedROM) {

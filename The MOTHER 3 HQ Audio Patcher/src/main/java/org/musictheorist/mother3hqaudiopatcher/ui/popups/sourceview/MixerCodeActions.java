@@ -32,6 +32,9 @@ public final class MixerCodeActions {
     ObservableList<String> getFonts() {
         return patcherResources.getFonts();
     }
+    int getKnownFontIndex() {
+        return patcherResources.getKnownFontIndex();
+    }
 
     void changeFont(ChoiceBox<String> fontMenu, TextArea mixerCodeView) {
         String fontName = fontMenu.getSelectionModel().getSelectedItem();

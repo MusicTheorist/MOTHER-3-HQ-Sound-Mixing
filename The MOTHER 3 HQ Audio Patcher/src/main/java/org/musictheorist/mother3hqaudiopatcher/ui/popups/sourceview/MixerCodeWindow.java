@@ -151,7 +151,13 @@ public final class MixerCodeWindow {
                 mixerCodeActions.changeFont(fontMenu, mixerCodeView);
             }
         });
-        fontMenu.getSelectionModel().select(0);
+        int knownFontIndex = mixerCodeActions.getKnownFontIndex();
+        if(knownFontIndex != -1) {
+            fontMenu.getSelectionModel().select(knownFontIndex);
+        }
+        else {
+            fontMenu.getSelectionModel().select(0);
+        }
     }
 
     private void initSizeSelection(ResourceBundle lang) {

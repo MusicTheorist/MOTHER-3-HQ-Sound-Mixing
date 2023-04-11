@@ -43,5 +43,5 @@ Download the patcher from the Releases section of this repo (or build using Mave
 - Original HQ sound mixing code written by Haruki "Bon" Kodera for Camelot Software Planning: https://www.camelot.co.jp/gimon/gimon21.html
 - Mother 3 decompilation and technical support: Kurausukun and theo3 (https://github.com/Kurausukun/mother3)
 - Extra technical support: phoenixbound, Lorenzooone, and Yosuke
-- French translations by Jumpman
+- French translations by JumpmanFR
 - Special thanks to the Mother 1+2 Fan Translation/Sound Restoration project and the PRET Discord community!
