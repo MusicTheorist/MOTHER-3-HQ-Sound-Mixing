@@ -22,14 +22,13 @@ Because of that, any TAS recordings of MOTHER 3 will be broken by this hack. You
 - Save backup copies of your game before patching
 - Easily undo/remove the HQ sound patch from your game
 - Read the source code behind this patch
-- Windows and macOS support (64-bit only; currently not available on Intel-based Macs!)
+- Windows and macOS support (64-bit only)
 
 ## HOW TO PATCH YOUR GAME
 Download the patcher from the Releases section of this repo (or build using Maven) and either load your ROM with the "Open" button or drag-and-drop your ROM into the patcher. After you indicate whether your copy of MOTHER 3 is an original Japanese release or a Fan Translation, you'll be able to apply the hack to your game. Simple as!
 
 ## FUTURE GOALS
 - Having the patcher translated to languages other than English
-- Support for Intel-based Macs (unfortunately, I only own ARM-based Macs and cannot install x64 Java myself!)
 - Support for Linux distros
 
 ## HOW CAN I SUPPORT THIS PROJECT?
@@ -43,5 +42,5 @@ Download the patcher from the Releases section of this repo (or build using Mave
 - Original HQ sound mixing code written by Haruki "Bon" Kodera for Camelot Software Planning: https://www.camelot.co.jp/gimon/gimon21.html
 - Mother 3 decompilation and technical support: Kurausukun and theo3 (https://github.com/Kurausukun/mother3)
 - Extra technical support: phoenixbound, Lorenzooone, and Yosuke
-- French translations by JumpmanFR
+- French translations and Intel-based Mac version packaged by JumpmanFR
 - Special thanks to the Mother 1+2 Fan Translation/Sound Restoration project and the PRET Discord community!
