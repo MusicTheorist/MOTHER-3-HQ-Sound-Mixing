@@ -14,6 +14,9 @@ You may hear occasional popping in-game after patching your ROM, for example whi
 If your ROM is a Fan Translation, this patch **does modify the RNG used by MOTHER 3 and will most likely give you unexpected results!**
 Because of that, any TAS recordings of MOTHER 3 will be broken by this hack. You have been warned!!
 
+## LISTEN TO A DEMO OF THIS HACK
+[![A YouTube video demonstrating the difference in audio quality this hack provides for MOTHER 3](http://img.youtube.com/vi/06ZF5FHsAIU/0.jpg)](https://www.youtube.com/watch?v=06ZF5FHsAIU&list=PL5w_-zMAJC8v_FeD_g6_9jO40Dhi-vY7A&index=2 "MOTHER 3 - High-Quality Sound Mixing hack demo")
+
 ## PATCHER FEATURES
 - 100% compatibility with ALL Fan Translations! [versions 1.2 and below will cause occasional slowdowns with this hack, regardless of the language]
 - Compatible with the original Japanese release of MOTHER 3
@@ -23,6 +26,8 @@ Because of that, any TAS recordings of MOTHER 3 will be broken by this hack. You
 - Easily undo/remove the HQ sound patch from your game
 - Read the source code behind this patch
 - Windows and macOS support (64-bit only)
+
+<img src="https://github.com/MusicTheorist/MOTHER-3-HQ-Sound-Mixing/blob/main/patcher_preview.png" width="640">
 
 ## HOW TO PATCH YOUR GAME
 Download the patcher from the Releases section of this repo (or build using Maven) and either load your ROM with the "Open" button or drag-and-drop your ROM into the patcher. After you indicate whether your copy of MOTHER 3 is an original Japanese release or a Fan Translation, you'll be able to apply the hack to your game. Simple as!
@@ -34,7 +39,7 @@ Download the patcher from the Releases section of this repo (or build using Mave
 ## HOW CAN I SUPPORT THIS PROJECT?
 - I would really appreciate it if people translated this patcher to other languages! If you're interested, contact me or submit a pull request.
 - I'd also appreciate it if people helped deploy the patcher for other operating systems, like Linux. Again, if interested, please feel free to reach out to me.
-- If you would like to support this project financially, I accept tips on Ko-Fi. Thank you so much in advance!
+- If you would like to support this project financially, [I accept tips on Ko-Fi.](https://ko-fi.com/summerdragonfly) Thank you so much in advance!
 
 ## CREDITS:
 - Mixer preparation, ROM hacking, and patcher written by Summer Dragonfly (xkas format by Near/byuu: https://wiki.superfamicom.org/xkas)
