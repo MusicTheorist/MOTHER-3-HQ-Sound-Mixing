@@ -5,4 +5,4 @@
 
 ## How to use these files
 - Move/copy "m4a_hq_mixer_no_fix.bin" (or "m4a_hq_mixer_dma_fix.bin" if you're using the "alternative" version of this hack) from the "m4a HQ Mixer\bin" directory into the same folder that your assembly patch is located in
-- For the MOTHER 3 Fan Translation tools, add the patch file to "m3hack.asm" with "incsrc <patch-file-name>"
+- For the MOTHER 3 Fan Translation tools, add the patch file to "m3hack.asm" with "incsrc _patch-file-name_"
