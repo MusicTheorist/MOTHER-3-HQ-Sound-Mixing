@@ -48,4 +48,5 @@ Download the patcher from the Releases section of this repo (or build using Mave
 - Mother 3 decompilation and technical support: Kurausukun and theo3 (https://github.com/Kurausukun/mother3)
 - Extra technical support: phoenixbound, Lorenzooone, and Yosuke
 - French translations and Intel-based Mac version packaged by JumpmanFR
+- Brazilian Portuguese translations by Somewhat Viable
 - Special thanks to the Mother 1+2 Fan Translation/Sound Restoration project and the PRET Discord community!
