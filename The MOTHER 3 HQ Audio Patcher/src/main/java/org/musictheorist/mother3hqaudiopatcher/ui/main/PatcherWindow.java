@@ -599,14 +599,23 @@ public final class PatcherWindow {
 
     public void display() {
         patcher.show();
-        patcher.centerOnScreen();
         layout.requestFocus();
     }
 
+    public void center() {
+        patcher.centerOnScreen();
+    }
+
     void resize() {
+        double x = patcher.getX();
+        double y = patcher.getY();
+
         patcher.close();
         initStage(false);
         display();
+
+        patcher.setX(x);
+        patcher.setY(y);
     }
 
     void initNewPatchState(PatchStates patchState, ResourceBundle lang) {

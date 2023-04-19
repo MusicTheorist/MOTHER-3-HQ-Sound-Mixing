@@ -43,6 +43,7 @@ public final class App extends Application {
 
         patcherWindow.initStage(true);
         patcherWindow.display();
+        patcherWindow.center();
 
         if(App.cycleAllPopups) {
             PopupsTester popupTests = new PopupsTester(stage, patcherResources, patcherActions, errorMessages);
