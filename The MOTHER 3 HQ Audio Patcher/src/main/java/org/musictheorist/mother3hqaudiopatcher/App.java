@@ -25,7 +25,7 @@ public final class App extends Application {
         try {
             lang = ResourceBundle.getBundle(baseName, Locale.getDefault());
         } catch (MissingResourceException e) {
-            lang = ResourceBundle.getBundle(baseName, Locale.ENGLISH);
+            lang = ResourceBundle.getBundle(baseName, Locale.of("en", "US"));
         }
 
         final PatcherResources patcherResources = new PatcherResources(this);
