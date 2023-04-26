@@ -20,8 +20,12 @@ public final class PopupHandler {
         });
     }
 
-    public void closeOneNow() {
-        popups.pop().close();
+    public boolean closeOneNow() {
+        if(popups.empty()) return false;
+        else {
+            popups.pop().close();
+            return true;
+        }
     }
 
     public void closeOneLater() {
@@ -37,7 +41,7 @@ public final class PopupHandler {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                while(!popups.empty()) closeOneNow();
+                while(closeOneNow()) {}
             }
         });
     }
