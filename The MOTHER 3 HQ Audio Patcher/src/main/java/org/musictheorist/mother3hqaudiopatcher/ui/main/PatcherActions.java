@@ -45,6 +45,7 @@ import org.musictheorist.mother3hqaudiopatcher.ui.popups.DisclaimersWindow;
 import org.musictheorist.mother3hqaudiopatcher.ui.popups.HackCreditsWindow;
 import org.musictheorist.mother3hqaudiopatcher.ui.popups.HyperlinkActions;
 import org.musictheorist.mother3hqaudiopatcher.ui.popups.PopupHandler;
+import org.musictheorist.mother3hqaudiopatcher.ui.popups.PopupsTester;
 import org.musictheorist.mother3hqaudiopatcher.ui.popups.Popup;
 import org.musictheorist.mother3hqaudiopatcher.ui.popups.dialogs.CorruptDataDialog;
 import org.musictheorist.mother3hqaudiopatcher.ui.popups.dialogs.Dialog;
@@ -178,7 +179,7 @@ public final class PatcherActions {
         patchIO.unlockROM();
     }
 
-    ButtonData getUserInput(Dialog window, boolean getLater, ResourceBundle lang) {
+    public ButtonData getUserInput(Dialog window, boolean getLater, ResourceBundle lang) {
         CompletableFuture<ButtonData> userInput = new CompletableFuture<ButtonData>();
         if(getLater) {
             Platform.runLater(new Runnable() {
@@ -200,7 +201,7 @@ public final class PatcherActions {
         return buttonData;
     }
 
-    ButtonData displayRepairDialog(boolean success, ResourceBundle lang) {
+    public ButtonData displayRepairDialog(boolean success, ResourceBundle lang) {
         String backupPath = patcherResources.getBackupPath();
         Dialog alert;
         if(backupPath.equals("")) {
@@ -210,7 +211,7 @@ public final class PatcherActions {
         return getUserInput(alert, success, lang);
     }
 
-    ButtonData displayRemovedPatchDialog(boolean success, ResourceBundle lang) {
+    public ButtonData displayRemovedPatchDialog(boolean success, ResourceBundle lang) {
         String backupPath = patcherResources.getBackupPath();
         Dialog alert;
         if(backupPath.equals("")) {
@@ -220,7 +221,7 @@ public final class PatcherActions {
         return getUserInput(alert, success, lang);
     }
 
-    ButtonData displayAppliedPatchDialog(boolean success, ResourceBundle lang) {
+    public ButtonData displayAppliedPatchDialog(boolean success, ResourceBundle lang) {
         String backupPath = patcherResources.getBackupPath();
         Dialog alert;
         if(backupPath.equals("")) {
@@ -536,7 +537,7 @@ public final class PatcherActions {
         }
     }
 
-    void handleFailDuringROMLoad(Throwable error, ResourceBundle lang) {
+    public void handleFailDuringROMLoad(Throwable error, ResourceBundle lang) {
         StringBuilder message = new StringBuilder();
         ButtonData userInput = null;
 
@@ -725,10 +726,10 @@ public final class PatcherActions {
     }
 
     private void handleFailedPatch(ButtonData buttonData, Task<Void> task, ResourceBundle lang) {
-        popupHandler.closeOneLater();
         if(buttonData.equals(ButtonData.HELP)) {
             errorMessages.invokeStackTrace(task.getException(), patcher, lang);
         }
+        popupHandler.closeOneLater();
     }
 
     private void handleFailWhileRemovingPatch(Task<Void> task, ResourceBundle lang) {
@@ -806,12 +807,12 @@ public final class PatcherActions {
         new Thread(applyPatch).start();
     }
 
-    void viewDisclaimers(ResourceBundle lang) {
+    public void viewDisclaimers(ResourceBundle lang) {
         DisclaimersWindow disclaimersWindow = new DisclaimersWindow(patcher, patcherResources, lang);
         disclaimersWindow.display();
     }
 
-    void viewMixerSourceCode(ResourceBundle lang) {
+    public void viewMixerSourceCode(ResourceBundle lang) {
         popupHandler.display(Popup.newLoadingFontsPopup(patcher, lang));
 
         Task<Void> loadSource = new Task<Void>() {
@@ -850,12 +851,13 @@ public final class PatcherActions {
 
         loadSource.setOnFailed(e -> {
             errorMessages.invokeDefault("errorSourceView", loadSource.getException(), patcher, lang);
+            popupHandler.closeOneNow();
         });
 
         new Thread(loadSource).start();
     }
 
-    void viewHackCredits(ResourceBundle lang) {
+    public void viewHackCredits(ResourceBundle lang) {
         HyperlinkActions hyperlinkActions = new HyperlinkActions(patcherResources);
         HackCreditsWindow hackCreditsWindow = new HackCreditsWindow(patcher, patcherResources, hyperlinkActions, lang);
         hackCreditsWindow.display();
