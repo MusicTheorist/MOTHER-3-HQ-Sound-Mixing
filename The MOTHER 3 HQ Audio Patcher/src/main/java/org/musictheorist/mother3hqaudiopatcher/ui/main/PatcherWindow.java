@@ -298,7 +298,7 @@ public final class PatcherWindow {
 
     private void scrollToRate(int rate) {
         if(rate <= 6) sampleRates.scrollTo(0);
-        else          sampleRates.scrollTo(sampleRates.getItems().size() - 1);
+        else          sampleRates.scrollTo(sampleRates.getItems().size());
     }
     void selectSampleRate(int rate) {
         sampleRates.getSelectionModel().select(rate);
@@ -628,9 +628,6 @@ public final class PatcherWindow {
     }
 
     void initPatcherState(String absolutePath, PatchStates patchState, boolean altJapanPatch, int rate, ResourceBundle lang) {
-        patchGroup.selectToggle(null);
-        versionGroup.selectToggle(null);
-
         if(patchState == PatchStates.JAPAN_PATCH || patchState == PatchStates.FAN_PATCH) {
             initNewPatchState(patchState, lang);
             disableUndoPatchButton(false);
@@ -645,8 +642,14 @@ public final class PatcherWindow {
         }
         else {
             disablePatchNodes(false, true);
-        }
 
+            if(patchGroup.getSelectedToggle() != null) {
+                patchGroup.selectToggle(null);
+            }
+            if(versionGroup.getSelectedToggle() != null) {
+                versionGroup.selectToggle(null);
+            }
+        }
         romPath.setText(absolutePath);
         selectSampleRate(rate);
     }

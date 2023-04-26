@@ -1,4 +1,4 @@
-package org.musictheorist.mother3hqaudiopatcher.ui.popups;
+package org.musictheorist.mother3hqaudiopatcher.ui.main;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -20,7 +20,8 @@ import org.musictheorist.mother3hqaudiopatcher.rom.sound.engine.NullSoundInfoExc
 import org.musictheorist.mother3hqaudiopatcher.rom.sound.engine.NullTrackPlayersException;
 import org.musictheorist.mother3hqaudiopatcher.rom.sound.engine.TrackPlayerOverflowException;
 import org.musictheorist.mother3hqaudiopatcher.rom.sound.engine.TrackPlayerUnderflowException;
-import org.musictheorist.mother3hqaudiopatcher.ui.main.PatcherActions;
+import org.musictheorist.mother3hqaudiopatcher.ui.popups.Popup;
+import org.musictheorist.mother3hqaudiopatcher.ui.popups.PopupHandler;
 import org.musictheorist.mother3hqaudiopatcher.ui.popups.dialogs.CorruptDataDialog;
 import org.musictheorist.mother3hqaudiopatcher.ui.popups.dialogs.Dialog;
 import org.musictheorist.mother3hqaudiopatcher.ui.popups.dialogs.OKDialog;

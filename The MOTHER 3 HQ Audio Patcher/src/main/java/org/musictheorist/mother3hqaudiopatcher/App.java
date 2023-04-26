@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import org.musictheorist.mother3hqaudiopatcher.resources.PatcherResources;
 import org.musictheorist.mother3hqaudiopatcher.ui.main.PatcherActions;
 import org.musictheorist.mother3hqaudiopatcher.ui.main.PatcherWindow;
-import org.musictheorist.mother3hqaudiopatcher.ui.popups.PopupsTester;
+import org.musictheorist.mother3hqaudiopatcher.ui.main.PopupsTester;
 import org.musictheorist.mother3hqaudiopatcher.ui.popups.error.ErrorMessages;
 
 import javafx.application.Application;
