@@ -25,7 +25,7 @@ Because of that, any TAS recordings of MOTHER 3 will be broken by this hack. You
 - Save backup copies of your game before patching
 - Easily undo/remove the HQ sound patch from your game
 - Read the source code behind this patch
-- Windows and macOS support (64-bit only)
+- Windows, macOS, and Linux support (64-bit only)
 
 <img src="https://github.com/MusicTheorist/MOTHER-3-HQ-Sound-Mixing/blob/main/patcher_preview.png" width="640">
 
@@ -34,7 +34,6 @@ Download the patcher from the Releases section of this repo (or build using Mave
 
 ## FUTURE GOALS
 - Having the patcher translated to languages other than English
-- Support for Linux distros
 
 ## HOW CAN I SUPPORT THIS PROJECT?
 - I would really appreciate it if people translated this patcher to other languages! If you're interested, contact me or submit a pull request.
