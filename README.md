@@ -46,6 +46,7 @@ Download the patcher from the Releases section of this repo (or build using Mave
 - HQ sound mixer ingeniously programmed by ipatix (https://github.com/ipatix), inspired by "Golden Sun": https://www.pokecommunity.com/showthread.php?t=324673
 - Original HQ sound mixing code written by Haruki "Bon" Kodera for Camelot Software Planning: https://www.camelot.co.jp/gimon/gimon21.html
 - Mother 3 decompilation and technical support: Kurausukun and theo3 (https://github.com/Kurausukun/mother3)
+- Technical support with Linux release: yaomtc
 - Extra technical support: phoenixbound, Lorenzooone, and Yosuke
 - French translations and Intel-based Mac version packaged by JumpmanFR
 - Brazilian Portuguese translations by Somewhat Viable
