@@ -33,11 +33,10 @@ Because of that, any TAS recordings of MOTHER 3 will be broken by this hack. You
 Download the patcher from the Releases section of this repo (or build using Maven) and either load your ROM with the "Open" button or drag-and-drop your ROM into the patcher. After you indicate whether your copy of MOTHER 3 is an original Japanese release or a Fan Translation, you'll be able to apply the hack to your game. Simple as!
 
 ## FUTURE GOALS
-- Having the patcher translated to languages other than English
+- Having the patcher translated to more languages
 
 ## HOW CAN I SUPPORT THIS PROJECT?
 - I would really appreciate it if people translated this patcher to other languages! If you're interested, contact me or submit a pull request.
-- I'd also appreciate it if people helped deploy the patcher for other operating systems, like Linux. Again, if interested, please feel free to reach out to me.
 - If you would like to support this project financially, [I accept tips on Ko-Fi.](https://ko-fi.com/summerdragonfly) Thank you so much in advance!
 
 ## CREDITS:
