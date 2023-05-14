@@ -43,14 +43,14 @@ org $808ED70; dd $3001B61
 //          to EWRAM actually gives us enough space (in the original Japan release) to fit all available sample rates with mp2k/Sappy, up to ~42.0kHz!
 org $8120E20; dd $30023F0   // track player  #1, 0x320 bytes        -- the "default" music player; primarily used for overworld music
 org $8120E2C; dd $3002710   // track player  #2, 0x320 bytes        -- used for songs that interrupt the overworld music (examples include battles, menus, and saving)
-org $8120E38; dd $3002A30	// track player  #3, 0x0A0 bytes        -- used for battle SFX (*not* including combo instruments)
-org $8120E44; dd $3000B20	// track player  #4, 0x140 bytes        -- used for door knocks and, most importantly, Alec's fart in Chapter 1
-org $8120E50; dd $3000C60	// track player  #5, 0x280 bytes        -- used for explosions
-org $8120E5C; dd $3000EE0	// track player  #6, 0x140 bytes        -- used for menu cursors and text printing
-org $8120E68; dd $3001020	// track player  #7, 0x500 bytes (whoa) -- used for voice samples
-org $8120E74; dd $3001520	// track player  #8, 0x280 bytes        -- used for combo instruments
-org $8120E80; dd $30017A0	// track player  #9, 0x0A0 bytes        -- used for monster noises
-org $8120E8C; dd $3001840	// track player #10, 0x320 bytes        -- used for chapter themes
+org $8120E38; dd $3002A30   // track player  #3, 0x0A0 bytes        -- used for battle SFX (*not* including combo instruments)
+org $8120E44; dd $3000B20   // track player  #4, 0x140 bytes        -- used for door knocks and, most importantly, Alec's fart in Chapter 1
+org $8120E50; dd $3000C60   // track player  #5, 0x280 bytes        -- used for explosions
+org $8120E5C; dd $3000EE0   // track player  #6, 0x140 bytes        -- used for menu cursors and text printing
+org $8120E68; dd $3001020   // track player  #7, 0x500 bytes (whoa) -- used for voice samples
+org $8120E74; dd $3001520   // track player  #8, 0x280 bytes        -- used for combo instruments
+org $8120E80; dd $30017A0   // track player  #9, 0x0A0 bytes        -- used for monster noises
+org $8120E8C; dd $3001840   // track player #10, 0x320 bytes        -- used for chapter themes
 
 // Optional step: you can change the sample rate of the game's audio by uncommenting the next org and substituting 'x' with any number below:
 // org $808FA02; db $9x
