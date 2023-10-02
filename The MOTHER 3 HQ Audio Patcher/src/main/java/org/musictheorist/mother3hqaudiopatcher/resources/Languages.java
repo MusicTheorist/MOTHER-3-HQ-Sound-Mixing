@@ -6,7 +6,8 @@ import java.util.Locale;
 public enum Languages {
               ENGLISH("langEnglish",          Locale.of("en", "US")),
                FRENCH("langFrench",           Locale.of("fr", "FR")),
-    PORTUGUESE_BRAZIL("langPortugueseBrazil", Locale.of("pt", "BR"));
+    PORTUGUESE_BRAZIL("langPortugueseBrazil", Locale.of("pt", "BR")),
+              ITALIAN("langItalian",          Locale.of("it", "IT"));
     //JAPANESE("langJapanese", Locale.JAPANESE);
 
     private final String langKey;
